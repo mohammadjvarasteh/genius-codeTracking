@@ -1,0 +1,232 @@
+body
+{
+    box-sizing: none;
+}
+*, *::before, *::after {
+    box-sizing: unset;
+}
+:root {
+	--c-action-primary: #2e44ff;
+	--c-action-primary-accent: #e9e5ff;
+	--c-action-secondary: #e5e5e5;
+	--c-text-primary: #0d0f21; 
+	--c-text-secondary: #6a6b76;
+	--c-background-primary: #d0d1de;
+}
+
+input, button, select, textarea {
+	font: inherit;
+}
+
+.mainCodeTracking {
+	width: 90%;
+	text-align: center;
+	padding-bottom: 20px;
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10vh;
+	margin-bottom: 10vh;
+	background-color: #FFF;
+	border-radius: .5rem;
+	box-shadow: 0 5px 15px rgba(#000, .2); 
+}
+
+.mainCodeTracking-header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+    direction: ltr;
+	padding: 1.5rem 1.5rem 1rem;
+}
+
+.logo-circle {
+	width: 3.5rem;
+	height: 3.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	background-color: var(--c-action-primary-accent);
+	svg {
+		max-width: 1.5rem;
+	}
+}
+
+.btn-close {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.25rem;
+	height: 2.25rem;
+	border-radius: .25rem;
+	border: none;
+	background-color: transparent;
+	&:hover, &:focus {
+		background-color: var(--c-action-primary-accent);
+	}
+}
+
+.mainCodeTracking-body {
+	padding: 1rem 1.5rem;
+}
+
+.momainCodeTrackingdal-title {
+	font-weight: 700;
+}
+
+.mainCodeTracking-description {
+	color: var(--c-text-secondary);
+}
+
+.upload-area {
+	margin-top: 1.25rem;
+	border: none;
+	background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23ccc' stroke-width='3' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+	background-color: transparent;
+	padding: 3rem;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    box-sizing: border-box;
+	&:hover, &:focus {
+			background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%232e44ff' stroke-width='3' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+	}
+} 
+
+.upload-area-icon {
+	display: block;
+	width: 2.25rem;
+	height: 2.25rem;
+	svg {
+		max-height: 100%;
+		max-width: 100%;
+	}
+}
+
+.upload-area-title {
+	margin-top: 1rem;
+	display: block;
+	font-weight: 700;
+		color: var(--c-text-primary);
+}
+
+.upload-area-description {
+		display: block;
+		color: var(--c-text-secondary);
+	strong {
+		color: var(--c-action-primary);
+		font-weight: 700;
+	}
+}
+
+.mainCodeTracking-footer {
+	padding: 1rem 1.5rem 1.5rem;
+	display: flex;
+	justify-content: flex-end;
+	[class*="btn-"] {
+		margin-left: .75rem;
+	}
+}
+
+.btn-secondary, .btn-primary {
+	padding: .5rem 1rem;
+	font-weight: 500;
+	border: 2px solid var(--c-action-secondary);
+	border-radius: .25rem;
+	background-color: transparent;
+}
+
+.btn-primary {
+	color: #FFF;
+	background-color: var(--c-action-primary);
+	border-color: var(--c-action-primary);
+}
+
+.setCodeTracking_plugin_loading_back_color
+{
+    z-index: 999999999;
+    width: 100vw;
+    height: 100%;
+    position: fixed;
+    /* background: #41814121; */
+    top : 0;
+    left: 0;
+}
+
+.setCodeTracking_plugin_loading{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    right: 50%;
+    top: 45%;
+    z-index: 99999999999;
+    border-top: 10px solid #1d2327;
+    position: fixed;/* havaset bashe akhar bezar*/
+    animation: a1 2s linear infinite;/* havaset bashe akhar bezar*/
+}
+
+.setCodeTracking_plugin_loading:before,.setCodeTracking_plugin_loading:after{
+    content: '';
+    width: 50px;
+    height: 50px;
+    /* background: red;  test kon*/
+    position: absolute;
+    left: 0;
+    top: -10px;
+    border-radius: 100%;
+}
+.setCodeTracking_plugin_loading:before{
+    border-top:10px solid #1d2327;
+    transform: rotate(120deg);
+}
+.setCodeTracking_plugin_loading:after{
+    border-top: 10px solid #1d2327;
+    transform: rotate(240deg);
+}
+
+@keyframes a1 {
+    to{
+    transform: rotate(360deg);
+    }
+
+}
+@keyframes a2 {
+    to{
+    transform: rotate(-360deg);
+    }
+
+}
+
+
+
+
+.setCodeTracking_popup_main 
+{
+    width:  85%;
+    height:  90%;
+    background-color: white;
+    position: fixed;
+    top: 20px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.062);
+    z-index: 99999999;
+	padding-bottom: 10px;
+
+}
+.setCodeTracking_popup_main .table_div
+{
+	height: 90%;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+
+.setCodeTracking_popup_main .operationBox
+{
+	height: 10%;
+	padding: 1%;
+}
+.displayNone
+{
+	display: none;
+}
