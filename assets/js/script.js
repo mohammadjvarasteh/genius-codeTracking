@@ -111,6 +111,8 @@ class setCodeTracking
   selectedElement;
   dataFile;
   submitPopupBtn;
+  messageBox;
+  events = [];
   constructor()
   {
     this.mainPopup      = this.getElementById('setCodeTracking_popup');
@@ -118,19 +120,30 @@ class setCodeTracking
     this.mainLoading    = this.getElementById('setCodeTracking_plugin_loading');
     this.file           = this.getElementById('setCodeTrackingFile');
     this.submitPopupBtn = this.getElementById('setCodeTrackingBtn');
-
+    this.messageBox     = {
+      main   : this.getElementById('geniusCodeTracking_message'),
+      okBtn  : this.getElementById('geniusCodeTracking_message_operator_accept'),
+      message: this.getElementById('geniusCodeTracking_messageBox') 
+    }
+    this.events = [
+      {
+        type : 'click',
+        target : this.messageBox.okBtn,
+        methods : ["acceptMessage"],
+        listener : null
+      }
+    ];
     this.addNeedEvents();
 
   }
   async handler(elementFile)
   {
-     this.loading().show();
      this.dataFile = await this.extractDataFile(elementFile);
      console.log(this.dataFile);
-     await  this.sendRequest(this.dataFile,'my_ajax');
+     await  this.sendRequest(this.dataFile);
+     this.messageInit();
      this.popup().show();
-     this.addDataToPopup();
-     this.loading().close();
+  ///   this.addDataToPopup();
   }
 
 
@@ -145,19 +158,18 @@ class setCodeTracking
   }
 
 
-  async sendRequest(data,action)
+  async sendRequest(data)
   {
       data = {
-        'action' : action,
+        'action' : 'genius_codeTracking',
         'data'   : data
       };
 
-      console.log(ajaxurl);
+      this.loading().show();
       this.dataFile = await $.post(ajaxurl, data, async function(response) {
-        // نمایش نتیجه در کنسول
-
         return response;
       });
+      this.loading().close()
   }
 
 
@@ -184,6 +196,21 @@ class setCodeTracking
 
   addNeedEvents()
   {
+
+    this.events.forEach((item)=>{
+        if(item.target != null)
+        {
+            const listener = (e)=>
+                {
+                    item.methods.forEach( method => {
+                        eval("this." + method + '(e)');
+                    });
+                }
+                item.target.addEventListener(item.type,listener)
+                item.listener = listener;
+        }
+    });
+
     this.file.addEventListener('change',(elementFile)=>
     {
         this.handler(elementFile);
@@ -195,6 +222,7 @@ class setCodeTracking
     });
 
   }
+
 
   close()
   {
@@ -227,6 +255,40 @@ class setCodeTracking
   selectingFile()
   {
 
+  }
+
+  acceptMessage()
+  {
+    this.messageBox.main.classList.add('displayNone')
+  }
+
+  createMessageTag(messages)
+  {
+      if(typeof(messages)  ==  'string')
+      {
+          messages = [messages];
+      }
+      console.log(messages);
+      while (this.messageBox.message.firstChild) 
+      {
+          this.messageBox.message.removeChild(this.messageBox.message.firstChild);    
+      }
+      let result = document.createDocumentFragment();
+      messages.forEach(message => {
+          const p = document.createElement('p');
+          p.innerText = message;
+          result.append(p);
+      });
+      this.messageBox.message.append(result);
+      return true;
+  
+  }
+
+  messageInit()
+  {
+    this.selectedElement = this.messageBox.main;
+    this.show();
+    this.createMessageTag(this.dataFile.message);
   }
 
   createElement(tag,value = '')

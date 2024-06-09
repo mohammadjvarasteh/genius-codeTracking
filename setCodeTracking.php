@@ -12,5 +12,6 @@
 define('setCodeTracking_plugin', __DIR__ );
 define('setCodeTracking_plugin_url', plugin_dir_url(__FILE__) );
 
+require_once setCodeTracking_plugin . '/inc/codeTracking_AjaxController.php';
 require_once setCodeTracking_plugin . '/inc/codeTracking_Controller.php';
 require_once setCodeTracking_plugin . '/inc/codeTracking_menu.php';

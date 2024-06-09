@@ -34,6 +34,7 @@ if (!empty($billing_first_name) && !empty($billing_last_name)) {
     wp_register_script('setCodeTracking-plugin-script',setCodeTracking_plugin_url . 'assets/js/script.js');
     require_once setCodeTracking_plugin . '/view/loading.php';
     require_once setCodeTracking_plugin . '/view/popup.php';
+    require_once setCodeTracking_plugin . '/view/message.php';
     wp_register_script('setCodeTracking-plugin-script-excel',setCodeTracking_plugin_url . 'assets/js/xlsx.full.min.js');
 }
 
@@ -42,6 +43,13 @@ function setCodeTracking_plugin_add_assets()
 {
     wp_enqueue_style('setCodeTracking-plugin-style');
     wp_enqueue_style('setCodeTracking-plugin-style-bootstrap');
+    $geniusCodeTrackingData = array(
+        'ajax_url' => admin_url( 'admin-ajax.php' ),
+        'security'  => wp_create_nonce( 'geniusCodeTrackingData_plugin_ajax_nonce' ),
+    );
+
+    wp_localize_script( 'my_didar-plugin-script', 'myDidarData', $geniusCodeTrackingData );
+
     wp_enqueue_script('setCodeTracking-plugin-script');
     wp_enqueue_script('setCodeTracking-plugin-script-excel');
 }
